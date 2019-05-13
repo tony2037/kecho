@@ -11,6 +11,12 @@ fastecho-objs := $(SRCS:.c=.o)
 all: $(GIT_HOOKS)
 	make -C $(KERNEL_DIR) SUBDIRS=$(BUILD_DIR) KBUILD_VERBOSE=$(VERBOSE) modules
 
+insert: all
+	sudo insmod fastecho.ko
+
+remove:
+	sudo rmmod fastecho
+
 $(GIT_HOOKS):
 	@scripts/install-git-hooks
 	@echo
